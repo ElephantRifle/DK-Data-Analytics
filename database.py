@@ -23,7 +23,20 @@ class Message(Base):
    user_id = Column(Integer, ForeignKey("users.id"))
    created_at = Column(DateTime, default = datetime.now)
 
-   
+#Utility Function
+def get_db():
+   engine = create_engine("sqlite:///example.db")
+   return sessionmaker(bind = engine)()
+
+
+def add_to_db(obj):
+   db = get_db()
+   db.add(obj)
+   db.commit()
+   db.close()
+
+
+
 
       
 
