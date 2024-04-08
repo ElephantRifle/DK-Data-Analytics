@@ -14,7 +14,7 @@ def example_form():
         name = request.form.get('name')
         email = request.form.get('email')
         password = request.form.get('pwd')
-        if len(email) > 0 and len(name) > 0 and len(pwd) > 0:
+        if len(email) > 0 and len(name) > 0 and len(password) > 0:
             user = User(name = name, email = email, password = password)
             add_to_db(user)
             status  = "User added successfully"
