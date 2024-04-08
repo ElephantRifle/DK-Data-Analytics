@@ -6,8 +6,8 @@ app.secret_key = "themostsecretketever"
 @app.route('/')
 def index():
     return render_template('index.html')
-@app.route('/example1/form',methods = ['GET','POST'])
 
+@app.route('/example1/form',methods = ['GET','POST'])
 def example_form():
     status = None
     if request.method == 'POST':
@@ -22,5 +22,13 @@ def example_form():
             status = "fill all fields"
 
     return render_template('form.html', status = status)
+
+@app.route('/example1/list')
+def example_1_list():
+    #fetch all users using sqlachemy query logic
+    db = get_db()
+    users = db.query(User).all()
+    return render_template('list.html', userlist = users)
+
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8000, debug=True)
